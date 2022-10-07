@@ -3,6 +3,7 @@
 }
 
 input[type='checkbox'] {
+    outline: none;
     position: absolute;
     -webkit-appearance: none;
     background-color: #c2c2c2;
@@ -54,5 +55,5 @@ svg {
     left: 0;
     width: var(--togglerHandleSize);
     height: var(--togglerHandleSize);
-    transform: scale(0.7);
+    transform: scale(0.5);
 }
