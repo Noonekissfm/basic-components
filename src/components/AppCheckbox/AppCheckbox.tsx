@@ -1,14 +1,16 @@
 import React, { FC, useState } from 'react';
-import { size } from '../../types/sizes';
+import { CheckIcon } from '../../assets/Icons/CheckIcon';
+import { Color } from '../../types/Colors';
+import { Size } from '../../types/Sizes';
 import './style.css';
 
 interface IProps {
-    color: string;
-    size: size;
+    color?: string;
+    size?: Size;
     checked: boolean;
 }
 
-export const AppCheckbox: FC<IProps> = ({ color = '#6c43bf', checked = false, size }) => {
+export const AppCheckbox: FC<IProps> = ({ color = Color.BRAND, checked = false, size = Size.MEDIUM }) => {
     const [isChecked, setChecked] = useState(checked);
 
     const setCheckedHandler = () => {
@@ -21,14 +23,11 @@ export const AppCheckbox: FC<IProps> = ({ color = '#6c43bf', checked = false, si
                 className={`tumbler-input tumbler--${size}`}
                 type="checkbox"
                 checked={isChecked}
-                style={{ backgroundColor: `${!isChecked ? '#c2c2c2' : color}` }}
+                style={{ backgroundColor: `${!isChecked ? Color.GRAY : color}` }}
                 onChange={setCheckedHandler}
             />
             <span className={`tumbler-check tumbler--${size}`}>
-                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill={color}>
-                    <path d="M0 0h24v24H0z" fill="none" />
-                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
-                </svg>
+                <CheckIcon color={color} />
             </span>
         </div>
     );
