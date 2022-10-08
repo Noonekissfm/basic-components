@@ -2,6 +2,16 @@
   text-align: center;
 }
 
+.buttonRow {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  width: 350px;
+  height: 200px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
