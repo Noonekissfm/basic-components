@@ -2,13 +2,13 @@ import React, { FC, useState } from 'react';
 import { size } from '../../types/sizes';
 import './style.css';
 
-interface IProps<T> {
+interface IProps {
     color: string;
-    size: T;
+    size: size;
     checked: boolean;
 }
 
-export const AppCheckbox: FC<IProps<size>> = ({ color = '#6c43bf', checked = false, size }) => {
+export const AppCheckbox: FC<IProps> = ({ color = '#6c43bf', checked = false, size }) => {
     const [isChecked, setChecked] = useState(checked);
 
     const setCheckedHandler = () => {
