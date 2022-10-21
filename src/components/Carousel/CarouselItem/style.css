@@ -1,0 +1,22 @@
+.carousel-item {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-left: 20px;
+    aspect-ratio: 16/9;
+
+    cursor: pointer;
+
+    border-radius: 12px;
+    border: 1px solid #ffffff34;
+
+    transition: transform 0.3s;
+}
+
+.carousel-item:first-child {
+    margin-left: 105px;
+}
+
+.carousel-item:last-child {
+    margin-right: 105px;
+}
