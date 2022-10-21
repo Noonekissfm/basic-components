@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState, useEffect, useMemo } from 'react';
+import React, { FC, useRef, useState, useEffect } from 'react';
 
 import { generateMockData } from './utils';
 
@@ -7,35 +7,21 @@ import { CarouselItem } from './CarouselItem/CarouselItem';
 
 interface IProps {
     count: number;
+    itemsCountPerScroll: number;
+    marginLeft: number
 }
 
-export const Carousel: FC<IProps> = ({ count }) => {
+export const Carousel: FC<IProps> = ({ count, itemsCountPerScroll, marginLeft }) => {
     const ulRef = useRef<HTMLUListElement>(null);
 
     // set mock(fake) data to carousel as items
-    let mock = useMemo(() => generateMockData(count), [count]);
+    const [data, setData] = useState(generateMockData(0, count))
 
     const [offset, setOffset] = useState(0);
     const [screenWidth, setScreenWidth] = useState(0);
     const [contentWidth, setContentWidth] = useState(0);
-    const [shiftToRight, setShiftToRight] = useState(0);
-    const [requestData, setRequestData] = useState(false);
-    const [loadingData, setLoadingData] = useState(false);
 
-    const itemWidth = Math.ceil((screenWidth - (20 * 5 + 95 * 2)) / 5);
-
-    // Request additional data for carousel
-
-    useEffect(() => {
-        if (requestData && !loadingData) {
-            setLoadingData(true);
-            mock.push(...generateMockData(15));
-            setTimeout(() => {
-                setLoadingData(false);
-                setRequestData(false);
-            }, 3000);
-        }
-    }, [requestData, contentWidth, mock, loadingData]);
+    const itemWidth = Math.ceil((screenWidth - (marginLeft * itemsCountPerScroll + 95 * 2)) / itemsCountPerScroll);
 
     // Screen resize handler
     useEffect(() => {
@@ -56,37 +42,41 @@ export const Carousel: FC<IProps> = ({ count }) => {
         if (ulRef.current) {
             setContentWidth(ulRef.current.scrollWidth);
         }
-    }, [mock, screenWidth, contentWidth, shiftToRight]);
+    }, [data, contentWidth]);
 
     useEffect(() => {
         if (ulRef.current) {
-            ulRef.current.scrollTo({
-                left: offset,
-                behavior: 'smooth',
-            });
+
         }
     }, [offset]);
 
-    const handleClickRight = () => {
-        setOffset((currentOffset) => {
-            currentOffset = shiftToRight;
-            return currentOffset + (screenWidth - 95 * 2);
-        });
+    const handleClickLeft = () => {
+        if (ulRef.current) {
+            ulRef.current.scrollTo({
+                left: ulRef.current.scrollLeft - (screenWidth - 95 * 2),
+                behavior: 'smooth',
+            });
+        }
     };
 
-    const handleClickLeft = () => {
-        setOffset((currentOffset) => {
-            currentOffset = shiftToRight;
-            return currentOffset - (screenWidth - 95 * 2);
-        });
+    const handleClickRight = () => {
+        if (ulRef.current) {
+            ulRef.current.scrollTo({
+                left: ulRef.current.scrollLeft + (screenWidth - 95 * 2),
+                behavior: 'smooth',
+            });
+        }
     };
 
     const handleScroll = () => {
-        if (ulRef.current) {
-            setShiftToRight(Math.ceil(ulRef.current.scrollLeft));
-        }
-        if (shiftToRight >= contentWidth - screenWidth * 2) {
-            setRequestData(true);
+        if (!ulRef.current) return
+
+        setOffset(ulRef.current.scrollLeft)
+
+        if (ulRef.current.scrollLeft >= contentWidth - screenWidth * 2) {
+            setData(prev => {
+                return [...prev, ...generateMockData(prev.length, count)]
+            })
         }
     };
 
@@ -94,14 +84,14 @@ export const Carousel: FC<IProps> = ({ count }) => {
         <div className="overflow-container">
             <div className="carousel-wrapper">
                 <ul className="carousel-items" ref={ulRef} onScroll={handleScroll}>
-                    {mock.map((item, index) => (
+                    {data.map((item, index) => (
                         <CarouselItem key={`carousel-item-${index}`} width={itemWidth} item={item} />
                     ))}
                 </ul>
             </div>
             <div className="buttons-wrapper">
-                {shiftToRight > 0 && <button className="carousel__button carousel__button--prev" onClick={handleClickLeft}></button>}
-                {shiftToRight < Math.floor(contentWidth - screenWidth) && (
+                {ulRef.current && ulRef.current.scrollLeft > 0 && <button className="carousel__button carousel__button--prev" onClick={handleClickLeft}></button>}
+                {ulRef.current && ulRef.current.scrollLeft < Math.floor(contentWidth - screenWidth) && (
                     <button className="carousel__button carousel__button--next" onClick={handleClickRight}></button>
                 )}
             </div>

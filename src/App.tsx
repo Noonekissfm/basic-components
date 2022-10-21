@@ -4,7 +4,7 @@ import { Carousel } from './components/Carousel/Carousel';
 function App() {
     return (
         <div className="App">
-            <Carousel count={15} />
+            <Carousel count={15} itemsCountPerScroll={5} marginLeft={20} />
         </div>
     );
 }

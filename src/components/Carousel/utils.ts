@@ -1,9 +1,11 @@
-export const generateMockData = (count: number) => {
-    const arr: string[] = [];
-  
-    for (let i = 0; i < count; i++) {
-      arr.push(String(i + 1));
-    }
-  
-    return arr;
-  };
+export const generateMockData = (startNumber: number, size: number) => {
+  const arr: number[] = [];
+
+  if (startNumber >= 60) return arr
+
+  for (let i = startNumber; i < startNumber + size; i++) {
+    arr.push(i + 1);
+  }
+
+  return arr;
+};

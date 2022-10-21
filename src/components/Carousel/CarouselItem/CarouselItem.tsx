@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, } from 'react';
 import './style.css'
 
 interface IProps {
@@ -6,7 +6,7 @@ interface IProps {
     item: any;
 }
 
-export const CarouselItem: FC<IProps> = ({ width, item }) => {
+export const CarouselItem: FC<IProps> = ({ width, item}) => {
     return (
         <li className="carousel-item" style={{ minWidth: `${width}px` }}>
             {item}
