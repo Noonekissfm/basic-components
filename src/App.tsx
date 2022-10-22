@@ -1,10 +1,15 @@
+import React from 'react';
 import './App.css';
-import { Carousel } from './components/Carousel/Carousel';
+
+import { Rail } from './components/Rail/Rail';
+
 
 function App() {
     return (
         <div className="App">
-            <Carousel count={15} itemsCountPerScroll={5} marginLeft={20} />
+            <Rail itemsOnPage={5}/>
+            <Rail itemsOnPage={7}/>
+            <Rail itemsOnPage={3}/>
         </div>
     );
 }
