@@ -10,10 +10,13 @@ export const generateMockData = (startNumber: number, size: number) => {
   return arr;
 };
 
-
-export const scrollOnOffset = (el: Element, offset:number) => {
+export const scrollOnOffset = (el: Element, offset: number) => {
   el.scrollTo({
-      left: offset,
-      behavior: 'smooth',
+    left: offset,
+    behavior: 'smooth',
   });
+}
+
+export const showFlagFromChild = (flag: boolean) => {
+  console.log('Flag is: ', flag)
 }
