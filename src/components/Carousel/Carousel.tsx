@@ -1,15 +1,15 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useRef, useState, PropsWithChildren } from 'react';
 import { CarouselButton } from './CarouselButton/CarouselButton';
 import { scrollOnOffset } from './utils';
 
 import './style.css';
+import { Directions } from '../../types/Directions';
 
 interface IProps {
-    children: any;
-    requireAdditionalData: (flag: boolean) => void;
+    onScrollEnd: () => void;
 }
 
-export const Carousel: FC<IProps> = ({ children, requireAdditionalData }) => {
+export const Carousel: FC<PropsWithChildren<IProps>> = ({ children, onScrollEnd }) => {
     const ulRef = useRef<HTMLUListElement>(null);
     const isLoadingAdditionalData = useRef<boolean>(false)
     
@@ -23,6 +23,12 @@ export const Carousel: FC<IProps> = ({ children, requireAdditionalData }) => {
             setViewportWidth(ulRef.current.clientWidth)
         }
     }, [viewportWidth, ulRef.current?.scrollWidth])
+
+    useEffect(()=>{
+        if(ulRef.current) {
+          isLoadingAdditionalData.current = false;  
+        }
+    }, [ulRef.current?.scrollWidth])
 
     const handlerLeftButtonClick = () => {
         if(!ulRef.current) return
@@ -41,7 +47,8 @@ export const Carousel: FC<IProps> = ({ children, requireAdditionalData }) => {
         if (((maxScroll - viewportWidth) - offset) < viewportWidth) {
 
             if(!isLoadingAdditionalData.current) {
-                requireAdditionalData(isLoadingAdditionalData.current);
+                isLoadingAdditionalData.current = true;
+                onScrollEnd();
                 setMaxScroll(ulRef.current.scrollWidth);
             }
         }
@@ -53,8 +60,8 @@ export const Carousel: FC<IProps> = ({ children, requireAdditionalData }) => {
                 {children}
             </ul>
             <div className="buttons-wrapper">
-                {offset > 0 && <CarouselButton direction="left" handlerClick={handlerLeftButtonClick} />}
-                {ulRef.current && offset < maxScroll - viewportWidth && <CarouselButton direction="right" handlerClick={handlerRightButtonClick} />}
+                {offset > 0 && <CarouselButton direction={Directions.LEFT} onClick={handlerLeftButtonClick} />}
+                {ulRef.current && offset < maxScroll - viewportWidth && <CarouselButton direction={Directions.RIGHT} onClick={handlerRightButtonClick} />}
             </div>
         </>
     );

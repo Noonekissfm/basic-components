@@ -3,7 +3,6 @@
     list-style: none;
     overflow-x: scroll;
     height: 100%;
-    padding: 10px;
 }
 
 .carousel-items::-webkit-scrollbar {

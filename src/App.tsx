@@ -10,21 +10,17 @@ function App() {
 
     const [mockData, setMockData] = useState(generateMockData(0, 18))
 
-    const generateAdditionalData = (flag: boolean) => {
-        if(flag) return
-        flag = true
+    const generateAdditionalData = () => {
         setMockData(prev => {
             return [...prev, ...generateMockData(prev.length, 6)]
         })
-        flag = false
     }
 
     return (
         <div className="App">
             <Rail width={100} height={200}>
-                <Carousel requireAdditionalData={generateAdditionalData}>
-                    {mockData.map((item, i) => <CarouselItem key={`CarouselItem-${i}`} item={item} handlerClick={clickFn} marginLeft={20} cardPerPage={6} />)}
-                    {/* {items.map(()=> <AppCheckbox checked={false} onAction={clickFn} size={Size.LARGE}/>)} */}
+                <Carousel onScrollEnd={generateAdditionalData}>
+                    {mockData.map((item, i) => <CarouselItem key={`CarouselItem-${i}`} item={item} onClick={clickFn} marginLeft={20} cardPerPage={6} />)}
                 </Carousel>
             </Rail>
         </div>

@@ -3,10 +3,10 @@ import './style.css'
 
 interface IProps {
     direction: string;
-    handlerClick: () => void;
+    onClick: () => void;
 }
 
-export const CarouselButton: FC<IProps> = ({direction, handlerClick}) => {
+export const CarouselButton: FC<IProps> = ({direction, onClick}) => {
 
     const rootClasses = ['carousel__button', direction === 'left'? 'carousel__button--left' : 'carousel__button--right']
 
@@ -16,6 +16,6 @@ export const CarouselButton: FC<IProps> = ({direction, handlerClick}) => {
     // Тогда не нужна будет переменная rootClasses, но код получается более загруженным
 
     return (
-        <button className={rootClasses.join(' ')} onClick={handlerClick}/>
+        <button className={rootClasses.join(' ')} onClick={onClick}/>
     )
 }
