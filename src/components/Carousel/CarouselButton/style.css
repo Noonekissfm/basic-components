@@ -1,0 +1,41 @@
+.carousel__button {
+    position: absolute;
+    width: 25px;
+    height: 50px;
+
+    border: none;
+    border-radius: 6px;
+
+    background-color: #ffffff86;
+    backdrop-filter: blur(13px);
+
+    transition: transform 0.3s;
+    outline: none;
+}
+
+.carousel__button:hover {
+    transform: scale(1.1);
+}
+
+.carousel__button--left {
+    left: 15px;
+}
+.carousel__button--left::before {
+    content: '\003C';
+    top: 0;
+    left: 0;
+    font-size: 25px;
+    color: #fff;
+}
+
+.carousel__button--right {
+    right: 15px;
+}
+
+.carousel__button--right::before {
+    content: '\003E';
+    top: 0;
+    left: 0;
+    font-size: 25px;
+    color: #fff;
+}
