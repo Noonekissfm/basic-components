@@ -17,6 +17,9 @@ export const Carousel: FC<PropsWithChildren<IProps>> = ({ children, onScrollEnd 
     const [maxScroll, setMaxScroll] = useState(0)
     const [viewportWidth, setViewportWidth] = useState(0)
 
+    let canScrollLeft = offset > 0;
+    let canScrollRight = ulRef.current && offset < Math.ceil(maxScroll - viewportWidth);
+
     useEffect(()=>{
         if(ulRef.current){
             setMaxScroll(ulRef.current.scrollWidth)
@@ -43,7 +46,6 @@ export const Carousel: FC<PropsWithChildren<IProps>> = ({ children, onScrollEnd 
         if (!ulRef.current) return
         setOffset(ulRef.current.scrollLeft)
 
-
         if (((maxScroll - viewportWidth) - offset) < viewportWidth) {
 
             if(!isLoadingAdditionalData.current) {
@@ -54,14 +56,17 @@ export const Carousel: FC<PropsWithChildren<IProps>> = ({ children, onScrollEnd 
         }
     }
 
+
+
+
     return (
         <>
             <ul ref={ulRef} className="carousel-items" onScroll={handlerScroll}>
                 {children}
             </ul>
             <div className="buttons-wrapper">
-                {offset > 0 && <CarouselButton direction={Directions.LEFT} onClick={handlerLeftButtonClick} />}
-                {ulRef.current && offset < (maxScroll - viewportWidth) - 1 && <CarouselButton direction={Directions.RIGHT} onClick={handlerRightButtonClick} />}
+                {canScrollLeft && <CarouselButton direction={Directions.LEFT} onClick={handlerLeftButtonClick} />}
+                {canScrollRight && <CarouselButton direction={Directions.RIGHT} onClick={handlerRightButtonClick} />}
             </div>
         </>
     );
