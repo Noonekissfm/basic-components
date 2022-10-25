@@ -61,7 +61,7 @@ export const Carousel: FC<PropsWithChildren<IProps>> = ({ children, onScrollEnd 
             </ul>
             <div className="buttons-wrapper">
                 {offset > 0 && <CarouselButton direction={Directions.LEFT} onClick={handlerLeftButtonClick} />}
-                {ulRef.current && offset < maxScroll - viewportWidth && <CarouselButton direction={Directions.RIGHT} onClick={handlerRightButtonClick} />}
+                {ulRef.current && offset < (maxScroll - viewportWidth) - 1 && <CarouselButton direction={Directions.RIGHT} onClick={handlerRightButtonClick} />}
             </div>
         </>
     );

@@ -25,6 +25,6 @@ export const showFlagFromChild = (flag: boolean) => {
   console.log('Flag is: ', flag)
 }
 
-export const clickFn = () => {
+export const handleClick = () => {
   return console.log('clicked')
 }

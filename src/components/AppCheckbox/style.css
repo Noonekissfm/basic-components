@@ -1,6 +1,7 @@
 .inputWrapper {
     position: relative;
     display: flex;
+    margin-left: 20px;
 }
 
 .tumbler-input {

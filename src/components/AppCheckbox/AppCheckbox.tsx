@@ -8,15 +8,15 @@ interface IProps {
     color?: string;
     size?: Size;
     checked: boolean;
-    onAction: (flag: boolean) => void;
+    onChange: (flag: boolean) => void;
 }
 
-export const AppCheckbox: FC<IProps> = ({ color = Color.BRAND, checked = false, size = Size.MEDIUM, onAction }) => {
+export const AppCheckbox: FC<IProps> = ({ color = Color.BRAND, checked = false, size = Size.MEDIUM, onChange }) => {
     const [isChecked, setChecked] = useState(checked);
 
     const setCheckedHandler = () => {
         setChecked(!isChecked);
-        onAction(isChecked)
+        onChange(isChecked)
     };
 
     return (
