@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useRef, useState, PropsWithChildren } from 'react';
 import { CarouselButton } from './CarouselButton/CarouselButton';
-import { scrollOnOffset } from './utils';
+import { scrollOnOffset } from '../../utils/utils';
 
 import './style.css';
 import { Directions } from '../../types/Directions';
@@ -55,9 +55,6 @@ export const Carousel: FC<PropsWithChildren<IProps>> = ({ children, onScrollEnd 
             }
         }
     }
-
-
-
 
     return (
         <>

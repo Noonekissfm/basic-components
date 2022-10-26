@@ -3,6 +3,7 @@
     list-style: none;
     overflow-x: scroll;
     height: 100%;
+    padding: 50px 0;
 }
 
 .carousel-items::-webkit-scrollbar {
@@ -21,7 +22,7 @@
     position: absolute;
     display: block;
 
-    top: 33%;
+    top: 43%;
     left: 0;
     right: 0;
     
