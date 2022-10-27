@@ -1,4 +1,7 @@
 import React, { FC, useState } from 'react';
+import { MuteIcon } from '../../../assets/Icons/Mute';
+import { UnmuteIcon } from '../../../assets/Icons/Unmute';
+import { Color } from '../../../types/Colors';
 import './style.css';
 
 interface IProps {
@@ -22,7 +25,9 @@ export const VideoCard: FC<IProps> = ({ item }) => {
                 <div className="cardFace">
                     <div className="cardFace__body">
                         <video className="cardFace__body__video" src={video} autoPlay={true} muted={isMuted} loop />
-                        <button className='cardFace__body__muteButton'onClick={()=>setIsMuted(!isMuted)}>{isMuted? <span>Unmute</span> : <span>Mute</span>}</button>
+                        <button className='cardFace__body__muteButton'onClick={()=>setIsMuted(!isMuted)}>
+                            {isMuted? <MuteIcon color={Color.WHITE} /> : <UnmuteIcon color={Color.WHITE} />}
+                        </button>
                     </div>
                     <div className="cardFace__footer">
                         <div className="cardFace__footer__top"><span>{name}</span></div>
