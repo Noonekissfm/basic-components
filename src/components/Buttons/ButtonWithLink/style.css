@@ -1,0 +1,13 @@
+.buttonWithLink {
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: none;
+
+    color: #fff;
+    background-color: #8b889252;
+}
+
+.buttonWithLink:hover {
+    background: linear-gradient(0deg, #8b889252, #aba8b377)
+}

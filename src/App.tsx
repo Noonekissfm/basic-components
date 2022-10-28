@@ -8,7 +8,7 @@ import { Size } from './types/Sizes';
 
 import { cardData } from './utils/utils';
 
-function App() {
+export const App = () => {
     return (
         <div className="App">
             <Rail width={Size.FULL_SCREEN_WIDTH} height={600}>
@@ -21,5 +21,3 @@ function App() {
         </div>
     );
 }
-
-export default App;

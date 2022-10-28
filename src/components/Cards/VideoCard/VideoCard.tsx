@@ -1,7 +1,6 @@
 import React, { FC, useState } from 'react';
-import { MuteIcon } from '../../../assets/Icons/Mute';
-import { UnmuteIcon } from '../../../assets/Icons/Unmute';
-import { Color } from '../../../types/Colors';
+import { ButtonWithLink } from '../../Buttons/ButtonWithLink/ButtonWithLink';
+import { MuteSwitcher } from '../../Buttons/MuteSwitcher/MuteSwitcher';
 import './style.css';
 
 interface IProps {
@@ -19,20 +18,26 @@ export const VideoCard: FC<IProps> = ({ item }) => {
     const [onHover, setOnHover] = useState(false);
     const [isMuted, setIsMuted] = useState(true);
 
+    const handleClickMuteSwitcher = () => {
+        setIsMuted(!isMuted)
+    }
+
     return (
         <li onMouseOver={() => setOnHover(true)} onMouseLeave={() => setOnHover(false)} style={{ marginLeft: 30+'px' }}>
             {onHover && (
                 <div className="cardFace">
                     <div className="cardFace__body">
                         <video className="cardFace__body__video" src={video} autoPlay={true} muted={isMuted} loop />
-                        <button className='cardFace__body__muteButton'onClick={()=>setIsMuted(!isMuted)}>
-                            {isMuted? <MuteIcon color={Color.WHITE} /> : <UnmuteIcon color={Color.WHITE} />}
-                        </button>
+                        <MuteSwitcher isMuted={isMuted} onClick={handleClickMuteSwitcher} />
                     </div>
                     <div className="cardFace__footer">
-                        <div className="cardFace__footer__top"><span>{name}</span></div>
+                        <div className="cardFace__footer__top">
+                            <span>
+                                {name}
+                            </span>
+                        </div>
                         <div className="cardFace__footer__bottom">
-                            <a href={link} target='_blank'><button className='YT'>Watch on YouTube</button></a>
+                           <ButtonWithLink label='Watch on YouTube' link={link} /> 
                         </div>
                     </div>
                 </div>

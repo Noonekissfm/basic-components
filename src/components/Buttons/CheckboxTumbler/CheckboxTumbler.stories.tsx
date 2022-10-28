@@ -1,8 +1,7 @@
-import { AppCheckbox } from './AppCheckbox';
+import { AppCheckbox } from './CheckboxTumbler';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Color } from '../../types/Colors';
-import { Size } from '../../types/Sizes';
-
+import { Color } from '../../../types/Colors';
+import { Size } from '../../../types/Sizes';
 export default {
     title: 'Basic Components/Buttons',
     component: AppCheckbox,

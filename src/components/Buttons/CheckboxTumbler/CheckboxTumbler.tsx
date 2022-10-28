@@ -1,17 +1,18 @@
 import React, { FC, useState } from 'react';
-import { CheckIcon } from '../../assets/Icons/CheckIcon';
-import { Color } from '../../types/Colors';
-import { Size } from '../../types/Sizes';
+import { CheckIcon } from '../../../assets/Icons/CheckIcon';
+import { Color } from '../../../types/Colors';
+import { Size } from '../../../types/Sizes';
 import './style.css';
 
 interface IProps {
-    color?: string;
+    color?: Color;
     size?: Size;
     checked: boolean;
+    children: any;
     onChange: (flag: boolean) => void;
 }
 
-export const AppCheckbox: FC<IProps> = ({ color = Color.BRAND, checked = false, size = Size.MEDIUM, onChange }) => {
+export const AppCheckbox: FC<IProps> = ({ color = Color.BRAND, checked = false, size = Size.MEDIUM, onChange, children }) => {
     const [isChecked, setChecked] = useState(checked);
 
     const setCheckedHandler = () => {
@@ -29,7 +30,7 @@ export const AppCheckbox: FC<IProps> = ({ color = Color.BRAND, checked = false, 
                 onChange={setCheckedHandler}
             />
             <span className={`tumbler-check tumbler--${size}`}>
-                <CheckIcon color={color} />
+                {children? children : <CheckIcon color={color} /> }
             </span>
         </div>
     );

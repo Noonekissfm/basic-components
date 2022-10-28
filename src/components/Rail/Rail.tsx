@@ -1,10 +1,10 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactNode } from 'react';
 import { Size } from '../../types/Sizes';
 
 import './style.css'
 
 interface IProps {
-    children: ReactElement;
+    children: ReactNode;
     width: Size;
     height: number;
 }

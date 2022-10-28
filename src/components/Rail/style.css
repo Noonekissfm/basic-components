@@ -1,4 +1,5 @@
 .rail__container {
     position: relative;
     display: block;
+    background: transparent;
 }
