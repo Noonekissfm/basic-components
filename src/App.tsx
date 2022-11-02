@@ -12,9 +12,9 @@ export const App = () => {
     return (
         <div className="App">
             <Rail width={Size.FULL_SCREEN_WIDTH} height={600}>
-                <Carousel onScrollEnd={() => console.log('click')}>
+                <Carousel onScrollEnd={() => console.log('end of possible scroll')}>
                     {cardData.map((item, i) => (
-                        <VideoCard key={`VideoCard-${i}`} item={item} />
+                        <VideoCard key={`VideoCard-${i}`}  src={item.src} video={item.video} name={item.name} link={item.link}/>
                     ))}
                 </Carousel>
             </Rail>

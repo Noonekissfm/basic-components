@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { CheckIcon } from '../../../assets/Icons/CheckIcon';
+import check from '../../../assets/icons/check.svg';
 import { Color } from '../../../types/Colors';
 import { Size } from '../../../types/Sizes';
 import './style.css';
@@ -30,7 +30,7 @@ export const AppCheckbox: FC<IProps> = ({ color = Color.BRAND, checked = false, 
                 onChange={setCheckedHandler}
             />
             <span className={`tumbler-check tumbler--${size}`}>
-                {children? children : <CheckIcon color={color} /> }
+                {children? children : check }
             </span>
         </div>
     );

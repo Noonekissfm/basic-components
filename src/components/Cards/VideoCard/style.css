@@ -1,5 +1,11 @@
-li:last-child {
-    margin-right: 30px;
+.videoCard {
+    position: relative;
+    margin-left: 30px;
+    transition: transform 0.3s 0.2s ease, opacity 1s 0.2s ease;
+}
+
+.videoCard:hover {
+    transform: scale(1.15);
 }
 
 .cardFace {
@@ -16,13 +22,18 @@ li:last-child {
     transition: transform 0.3s 0.5s ease;
 }
 
-.cardFace:hover {
-    transform: scale(1.15);
+.cardFace__cover {
+    position: absolute;
+    background-size: cover;
+    top: 0;
+    left: 0;
+
+    transition: all 0.3s 0.3s ease;
 }
 
-.cardFace__cover {
-    background-size: cover;
-
+.cardFace__cover:hover {
+    opacity: 0;
+    visibility: unset;
 }
 
 .cardFace__body {
